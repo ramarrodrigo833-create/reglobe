@@ -152,7 +152,7 @@ function initLogin(){tab('in');['fin','fup','ffg'].forEach(i=>$('#'+i).reset())}
 $('#fg').onclick=e=>{e.preventDefault();tab('fg')};$('#bk').onclick=e=>{e.preventDefault();tab('in')};
 $('#fin').onsubmit=async e=>{e.preventDefault();try{await signInWithEmailAndPassword(au,$('#iu').value.trim(),$('#ip').value)}catch(x){toast(ERR(x))}};
 $('#fup').onsubmit=async e=>{e.preventDefault();if($('#n1').value!==$('#n2').value)return toast('Passwords do not match.');const em=$('#nu').value.trim();
-try{const c=await createUserWithEmailAndPassword(au,em,$('#n1').value);await setDoc(doc(fs,'users',c.user.uid),{name:$('#nm').value.trim(),email:c.user.email,role:c.user.email.toLowerCase()===ADMIN_EMAIL.toLowerCase()?'admin':'pending',ts:Date.now()})}catch(x){toast(ERR(x))}};
+try{const c=await createUserWithEmailAndPassword(au,em,$('#n1').value);await setDoc(doc(fs,'users',c.user.uid),{name:$('#nm').value.trim(),email:c.user.email,role:c.user.email.toLowerCase()===ADMIN_EMAIL.toLowerCase()?'admin':'staff',ts:Date.now()})}catch(x){toast(ERR(x))}};
 $('#ffg').onsubmit=async e=>{e.preventDefault();try{await sendPasswordResetEmail(au,$('#fu').value.trim())}catch(x){}toast('If that email has an account, a reset link was sent. Check your inbox and spam folder.');tab('in')};
 function showLogin(){dataUn.forEach(f=>f());dataUn=[];stopCam();$('#app').hidden=true;$('#login').hidden=false}
 function enter(){dataUn.forEach(f=>f());dataUn=[];note('');$('#login').hidden=true;$('#app').hidden=false;buildNav();$('#uav').textContent=me.name[0].toUpperCase();$('#un').textContent=me.name;$('#ur').textContent=isAdmin()?'Administrator':'Staff';
